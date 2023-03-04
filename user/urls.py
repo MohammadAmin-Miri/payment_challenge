@@ -11,4 +11,5 @@ urlpatterns = [
     path('signin/', views.SigninUser.as_view(), name='signin'),
     path('resend/phone/', views.ResendPhoneCode.as_view(), name='resend_phone_code'),
     path('resend/email/', views.ResendEmailCode.as_view(), name='resend_email_code'),
+    path('all/', views.UserListAPIView.as_view(), name='users-list'),
 ]

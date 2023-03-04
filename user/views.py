@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
@@ -11,7 +12,11 @@ from .serializers import (
     ResendEmailCodeSerializer,
     UserDetailSerializer,
     UserPasswordSerializer,
+    UserListSerializer,
 )
+
+
+user_model = get_user_model()
 
 
 class SignupUser(generics.CreateAPIView):
@@ -64,3 +69,9 @@ class UserPassword(generics.UpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class UserListAPIView(generics.ListAPIView):
+    serializer_class = UserListSerializer
+    permission_classes = [AllowAny]
+    queryset = user_model.objects.all()

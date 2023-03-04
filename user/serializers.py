@@ -186,3 +186,9 @@ class UserPasswordSerializer(serializers.ModelSerializer):
             BlacklistedToken.objects.get_or_create(token=token)
         instance.save()
         return get_tokens_for_user(instance)
+
+
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = user_model
+        fields = ['id', 'first_name', 'last_name']
