@@ -38,7 +38,7 @@ class State(models.Model):
     
 class City(models.Model):
     name = models.CharField(max_length=120)
-    state_id = models.ForeignKey(to=State, on_delete=models.CASCADE, default=State.objects.first().id)
+    state_id = models.ForeignKey(to=State, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
