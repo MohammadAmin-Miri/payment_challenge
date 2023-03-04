@@ -9,7 +9,7 @@ however, using the postman collection is recommended.
 _create __.env___ with the bellow content
 
 ```
-SECRET_KEY='django-insecure-%*@_(96wh!z7zfmq98yk^i7q&z*a4+ymxn^@rmzy%+q6$8jcgi'
+SECRET_KEY='A random string'
 ALLOWED_HOSTS='["*"]'
 DEVELOPMENT=True
 
