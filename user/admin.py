@@ -13,5 +13,6 @@ class UserAdmin(admin.ModelAdmin):
         'last_name',
         'date_joined',
         'phone_verified',
-        'email_verified'
+        'email_verified',
+        'balance'
     )
