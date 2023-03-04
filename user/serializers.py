@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
+from django.db import IntegrityError
 from django.db.models import Q
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
@@ -32,11 +34,18 @@ class CustomUserSerializer(serializers.ModelSerializer):
         fields = ['phone', 'email', 'password']
 
     def create(self, validated_data):
+        email = validated_data.get('email')
+        phone = validated_data.get('phone')
+        if email is None and phone is None:
+            raise ValidationError(detail='You must at least provide and email or a phone number')
         password = validated_data.pop('password')
-        user = user_model(**validated_data)
-        user.set_password(password)
-        user.save()
-        send_verification_code.apply_async((validated_data.get('phone'), validated_data.get('email')))
+        try:
+            user = user_model(**validated_data)
+            user.set_password(password)
+            user.save()
+        except IntegrityError:
+            raise ValidationError(detail='User with this credentials already exists')
+        send_verification_code.apply_async([phone, email])
         return user
 
 
