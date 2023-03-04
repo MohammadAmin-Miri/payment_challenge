@@ -1,11 +1,21 @@
 # Development Environment Setup Documentation
 
-This project consist of two application user and pay which the user part was already developed so I used it instead
-of developing it again and the pay application was designed for this challenge. </BR>
+This django project consist of two application user and pay which the user part was already developed so I used it instead
+of developing it again and the pay application which was designed for this challenge. </BR>
 
-You can use both Swagger with `http://localhost:8000/swagger/` address or Postman collection for using the APIs
+You can use both Swagger with `http://localhost:8000/swagger/` address or Postman collection for using the APIs,
+however, using the postman collection is recommended.
 
-_create __.env___
+_create __.env___ with the bellow content
+
+```
+SECRET_KEY='django-insecure-%*@_(96wh!z7zfmq98yk^i7q&z*a4+ymxn^@rmzy%+q6$8jcgi'
+ALLOWED_HOSTS='["*"]'
+DEVELOPMENT=True
+
+REDIS_HOST='redis'
+REDIS_PORT=6379
+```
 
 _Run the following command :_
 
