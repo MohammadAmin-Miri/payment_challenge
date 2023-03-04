@@ -11,7 +11,6 @@ from .serializers import (
     ResendEmailCodeSerializer,
     UserDetailSerializer,
     UserPasswordSerializer,
-    UserAddressSerializer,
 )
 
 
@@ -65,11 +64,3 @@ class UserPassword(generics.UpdateAPIView):
 
     def get_object(self):
         return self.request.user
-    
-    
-class UserAddress(generics.CreateAPIView):
-    serializer_class = UserAddressSerializer
-    permission_classes = [IsAuthenticated]
-    
-    def perform_create(self, serializer):
-        serializer.save(user_id=self.request.user)

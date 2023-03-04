@@ -11,7 +11,4 @@ urlpatterns = [
     path('signin/', views.SigninUser.as_view(), name='signin'),
     path('resend/phone/', views.ResendPhoneCode.as_view(), name='resend_phone_code'),
     path('resend/email/', views.ResendEmailCode.as_view(), name='resend_email_code'),
-    path('address/', views.UserAddress.as_view(), name='address'),
-    path('addresses/', views.UserAddressDetail.as_view(), name='addresses'),
-    path('addresses/<int:pk>/', views.UserEditAddress.as_view(), name='get-address'),
 ]
