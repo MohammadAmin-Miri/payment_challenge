@@ -11,13 +11,8 @@ from .serializers import (
     ResendEmailCodeSerializer,
     UserDetailSerializer,
     UserPasswordSerializer,
-    UserAddressDetailSerializer,
     UserAddressSerializer,
-    UserEditAddressSerializer,
-    StateDetailSerializer,
-    CityDetailSerializer,
 )
-from .models import Address, City, State
 
 
 class SignupUser(generics.CreateAPIView):
@@ -78,33 +73,3 @@ class UserAddress(generics.CreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(user_id=self.request.user)
-    
-    
-class UserAddressDetail(generics.ListAPIView):
-    serializer_class = UserAddressDetailSerializer
-    permission_classes = [IsAuthenticated]
-    
-    def get_queryset(self):
-        return Address.objects.filter(user_id=self.request.user)
-
-
-class UserEditAddress(generics.RetrieveUpdateAPIView):
-    serializer_class = UserEditAddressSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_object(self):
-        return Address.objects.get(id=self.kwargs.get('pk'), user_id=self.request.user)
-
-
-class StateDetail(generics.ListAPIView):
-    serializer_class = StateDetailSerializer
-    permission_classes = [IsAuthenticated]
-    queryset = State.objects.all()
-
-
-class CityDetail(generics.ListAPIView):
-    serializer_class = CityDetailSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return City.objects.filter(state_id=self.kwargs.get('pk'))

@@ -18,7 +18,6 @@ from user.exceptions import (
 )
 from user.tasks import send_verification_code
 from user.utils import get_tokens_for_user
-from .models import Address, State, City
 
 user_model = get_user_model()
 
@@ -178,41 +177,3 @@ class UserPasswordSerializer(serializers.ModelSerializer):
             BlacklistedToken.objects.get_or_create(token=token)
         instance.save()
         return get_tokens_for_user(instance)
-    
-    
-class UserAddressSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Address
-        fields = ['id', 'user_id', 'state_id', 'city_id', 'postal_code', 'description']
-        read_only_fields = ['id']
-        extra_kwargs = {'user_id': {'required': False}}
-    
-    
-class UserAddressDetailSerializer(serializers.ModelSerializer):
-    state_id = serializers.StringRelatedField()
-    city_id = serializers.StringRelatedField()
-    
-    class Meta:
-        model = Address
-        fields = ['id', 'state_id', 'city_id', 'postal_code', 'description']
-
-
-class UserEditAddressSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Address
-        fields = ['id', 'state_id', 'city_id', 'postal_code', 'description']
-        read_only_fields = ['id']
-
-
-class StateDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = State
-        fields = '__all__'
-
-
-class CityDetailSerializer(serializers.ModelSerializer):
-    state_id = serializers.StringRelatedField()
-
-    class Meta:
-        model = City
-        fields = '__all__'
