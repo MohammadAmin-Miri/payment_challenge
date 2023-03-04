@@ -1,0 +1,928 @@
+{
+	"info": {
+		"_postman_id": "ab3cb24d-d3b8-494d-9df7-eb1ea86b23e8",
+		"name": "Payment Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12623248"
+	},
+	"item": [
+		{
+			"name": "All Users List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users/all/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"all",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "All Users List Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/all/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"all",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 18:07:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "304"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"first_name\": \"admin\",\n        \"last_name\": \"site\"\n    },\n    {\n        \"id\": 6,\n        \"first_name\": \"name\",\n        \"last_name\": \"family name\"\n    },\n    {\n        \"id\": 7,\n        \"first_name\": \"user\",\n        \"last_name\": \"test\"\n    },\n    {\n        \"id\": 8,\n        \"first_name\": \"test\",\n        \"last_name\": \"user\"\n    },\n    {\n        \"id\": 9,\n        \"first_name\": \"test\",\n        \"last_name\": \"usering\"\n    },\n    {\n        \"id\": 10,\n        \"first_name\": \"backend\",\n        \"last_name\": \"test\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "User Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"testuser10@test.com\",\n  \"password\": \"user123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/signup/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Signup Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"testuser10@test.com\",\n  \"password\": \"user123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/signup/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"signup",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 17:57:00 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"phone\": null,\n    \"email\": \"testuser10@test.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User Signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_or_email\": \"admin@test.com\",\n  \"password\": \"admin2023\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/signin/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"signin",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Signin Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone_or_email\": \"admin@test.com\",\n  \"password\": \"admin2023\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/signin/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"signin",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 17:58:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.2"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "275"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoic2xpZGluZyIsImV4cCI6MTY3ODIxMTkwMSwiaWF0IjoxNjc3OTUyNzAxLCJqdGkiOiJlMGNiM2NjMDljODk0ZDc1OTlmN2IyNzYyNDEzMjkzNSIsInJlZnJlc2hfZXhwIjoxNjc4NTU3NTAxLCJ1c2VyX2lkIjoxfQ.98uBW1CS9YxauGnzFTNPYc9O6VPISEV0quy6FW05UTA\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Payment List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/payments/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payments",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Payment List Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/payments/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"payments",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 16:01:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.6"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "373"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 5,\n        \"title\": \"salaries\",\n        \"status\": \"PENDING\",\n        \"total_payment\": 37700000,\n        \"payment_date\": \"2023-03-12\",\n        \"date_created\": \"2023-03-04T15:58:49.654599Z\",\n        \"date_modified\": \"2023-03-04T15:58:49.663771Z\"\n    },\n    {\n        \"id\": 6,\n        \"title\": \"salaries\",\n        \"status\": \"PENDING\",\n        \"total_payment\": 42250000,\n        \"payment_date\": \"2023-05-12\",\n        \"date_created\": \"2023-03-04T16:01:00.766408Z\",\n        \"date_modified\": \"2023-03-04T16:01:00.846811Z\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Single Payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/payments/:id/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payments",
+						":id",
+						""
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				},
+				"description": "This API is for getting a single payment record with providing its id which shows more details compared to payment list api"
+			},
+			"response": [
+				{
+					"name": "Get Single Payment Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/payments/:id/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"payments",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 16:05:37 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.6"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "443"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5,\n    \"employees\": [\n        {\n            \"id\": 13,\n            \"user\": 6,\n            \"work_hours\": 160,\n            \"hourly_wage\": 80000,\n            \"final_payment\": 12800000\n        },\n        {\n            \"id\": 14,\n            \"user\": 7,\n            \"work_hours\": 140,\n            \"hourly_wage\": 85000,\n            \"final_payment\": 11900000\n        },\n        {\n            \"id\": 15,\n            \"user\": 9,\n            \"work_hours\": 130,\n            \"hourly_wage\": 100000,\n            \"final_payment\": 13000000\n        }\n    ],\n    \"title\": \"salaries\",\n    \"status\": \"PENDING\",\n    \"total_payment\": 37700000,\n    \"payment_date\": \"2023-03-12\",\n    \"date_created\": \"2023-03-04T15:58:49.654599Z\",\n    \"date_modified\": \"2023-03-04T15:58:49.663771Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"salaries\",\n  \"payment_date\": \"2023-03-12\",\n  \"employees\": [\n    {\n      \"user\": 6,\n      \"work_hours\": 160,\n      \"hourly_wage\": 80000\n    },\n    {\n      \"user\": 7,\n      \"work_hours\": 140,\n      \"hourly_wage\": 85000\n    },\n    {\n      \"user\": 9,\n      \"work_hours\": 130,\n      \"hourly_wage\": 100000\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/payments/add/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payments",
+						"add",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Payment Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"salaries\",\n  \"payment_date\": \"2023-05-12\",\n  \"employees\": [\n    {\n      \"user\": 6,\n      \"work_hours\": 162,\n      \"hourly_wage\": 85000\n    },\n    {\n      \"user\": 7,\n      \"work_hours\": 145,\n      \"hourly_wage\": 90000\n    },\n    {\n      \"user\": 9,\n      \"work_hours\": 130,\n      \"hourly_wage\": 100000\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/payments/add/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"payments",
+								"add",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 16:11:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.6"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "350"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"salaries\",\n    \"payment_date\": \"2023-05-12\",\n    \"employees\": [\n        {\n            \"id\": 25,\n            \"user\": 6,\n            \"work_hours\": 162,\n            \"hourly_wage\": 85000,\n            \"final_payment\": 13770000\n        },\n        {\n            \"id\": 26,\n            \"user\": 7,\n            \"work_hours\": 145,\n            \"hourly_wage\": 90000,\n            \"final_payment\": 13050000\n        },\n        {\n            \"id\": 27,\n            \"user\": 9,\n            \"work_hours\": 130,\n            \"hourly_wage\": 100000,\n            \"final_payment\": 13000000\n        }\n    ],\n    \"total_payment\": 39820000,\n    \"status\": \"PENDING\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/payments/:id/finalize/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payments",
+						":id",
+						"finalize",
+						""
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Payment",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/payments/:id/finalize/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"payments",
+								":id",
+								"finalize",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 16:09:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.6"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "PUT, PATCH, DELETE, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Finalize Payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"Done\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/payments/:id/finalize/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"payments",
+						":id",
+						"finalize",
+						""
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Balance Not Enough",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"Done\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/payments/:id/finalize/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"payments",
+								":id",
+								"finalize",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 16:22:25 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.6"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "PUT, PATCH, DELETE, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    \"Please charge your balance.\"\n]"
+				},
+				{
+					"name": "Finalize Payment Success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"Done\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/payments/:id/finalize/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"payments",
+								":id",
+								"finalize",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 04 Mar 2023 16:23:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.10.6"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "PUT, PATCH, DELETE, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "17"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Done\"\n}"
+				}
+			]
+		}
+	]
+}

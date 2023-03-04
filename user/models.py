@@ -14,6 +14,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_('email address'), unique=True, null=True)
     phone_verified = models.BooleanField(default=False)
     email_verified = models.BooleanField(default=False)
+    balance = models.PositiveIntegerField(default=0)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -27,26 +28,3 @@ class CustomUser(AbstractUser):
             return self.phone
         else:
             return str(self.id)
-        
-        
-class State(models.Model):
-    name = models.CharField(max_length=120)
-    
-    def __str__(self):
-        return self.name
-    
-    
-class City(models.Model):
-    name = models.CharField(max_length=120)
-    state_id = models.ForeignKey(to=State, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.name
-        
-        
-class Address(models.Model):
-    user_id = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
-    state_id = models.ForeignKey(to=State, on_delete=models.CASCADE)
-    city_id = models.ForeignKey(to=City, on_delete=models.CASCADE)
-    postal_code = models.CharField(max_length=12)
-    description = models.TextField()

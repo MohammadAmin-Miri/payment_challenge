@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
+from django.db import IntegrityError
 from django.db.models import Q
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 
@@ -18,7 +20,6 @@ from user.exceptions import (
 )
 from user.tasks import send_verification_code
 from user.utils import get_tokens_for_user
-from .models import Address, State, City
 
 user_model = get_user_model()
 
@@ -33,11 +34,18 @@ class CustomUserSerializer(serializers.ModelSerializer):
         fields = ['phone', 'email', 'password']
 
     def create(self, validated_data):
+        email = validated_data.get('email')
+        phone = validated_data.get('phone')
+        if email is None and phone is None:
+            raise ValidationError(detail='You must at least provide and email or a phone number')
         password = validated_data.pop('password')
-        user = user_model(**validated_data)
-        user.set_password(password)
-        user.save()
-        send_verification_code.apply_async((validated_data.get('phone'), validated_data.get('email')))
+        try:
+            user = user_model(**validated_data)
+            user.set_password(password)
+            user.save()
+        except IntegrityError:
+            raise ValidationError(detail='User with this credentials already exists')
+        send_verification_code.apply_async([phone, email])
         return user
 
 
@@ -178,41 +186,9 @@ class UserPasswordSerializer(serializers.ModelSerializer):
             BlacklistedToken.objects.get_or_create(token=token)
         instance.save()
         return get_tokens_for_user(instance)
-    
-    
-class UserAddressSerializer(serializers.ModelSerializer):
+
+
+class UserListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Address
-        fields = ['id', 'user_id', 'state_id', 'city_id', 'postal_code', 'description']
-        read_only_fields = ['id']
-        extra_kwargs = {'user_id': {'required': False}}
-    
-    
-class UserAddressDetailSerializer(serializers.ModelSerializer):
-    state_id = serializers.StringRelatedField()
-    city_id = serializers.StringRelatedField()
-    
-    class Meta:
-        model = Address
-        fields = ['id', 'state_id', 'city_id', 'postal_code', 'description']
-
-
-class UserEditAddressSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Address
-        fields = ['id', 'state_id', 'city_id', 'postal_code', 'description']
-        read_only_fields = ['id']
-
-
-class StateDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = State
-        fields = '__all__'
-
-
-class CityDetailSerializer(serializers.ModelSerializer):
-    state_id = serializers.StringRelatedField()
-
-    class Meta:
-        model = City
-        fields = '__all__'
+        model = user_model
+        fields = ['id', 'first_name', 'last_name']
